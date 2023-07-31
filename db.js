@@ -10,8 +10,8 @@ const mongoose =require("mongoose")
             useNewUrlParser:true,
             UseUnifiedTopology:true,
         }
-        const mongodburl="mongodb+srv://dineshbhai:dinesh18@studentmentor.eebdrjb.mongodb.net/passwordstask"
-        mongoose.connect(mongodburl,params)
+       
+        mongoose.connect(process.env.MONGODBURL,params)
         console.log('db connected successfully')
         
     } catch (error) {

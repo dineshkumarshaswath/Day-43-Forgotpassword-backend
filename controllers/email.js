@@ -6,15 +6,15 @@ const sendMail = async options =>{
       const transporter = nodemailer.createTransport({
          service: 'gmail',
         auth: {
-          user: 'dineshnithvik@gmail.com',
-          pass: 'rdgagalmunuvjcar',
-        },
+          user:process.env.USER,
+          pass:process.env.PASS
+        }
       });
 
       //this mailoptions for the which messge want you to send the user
 
       const mailOptions = {
-        from: 'dineshnithvik@gmail.com',
+        from:process.env.USER,
         to: options.email,
         subject: 'Reset the password',
         text: options.message

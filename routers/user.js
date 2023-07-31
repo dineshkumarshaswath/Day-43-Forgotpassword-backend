@@ -95,7 +95,7 @@ router.post('/forgot/password', async (req, res) => {
       const resetToken = user.getResetToken();
       await user.save({validateBeforeSave:false})
       
-      const resetUrl = `${req.protocol}://${req.get("host")}/reset/password/${resetToken}`;
+      const resetUrl = `https://fogot-password-task.netlify.app/reset/password/${resetToken}`;
 //send the reseturl
 
       const message = `Your password reset url is as follows \n\n 

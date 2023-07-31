@@ -37,14 +37,17 @@ const userSchema= new mongoose.Schema({
 })
 
   function generatejwttoken(id){
-      return jwt.sign({id},"hithisistokenforthejwt");
+      return jwt.sign({id},Process.env.SECRET_KEY);
 
   }
 
   userSchema.methods.getResetToken = function(){
    //here is the hash the token
+
     const token = crypto.randomBytes(20).toString('hex');
+    
    // this is insert the field of resetpasswordtoken
+
    this.resetPasswordToken =  crypto.createHash('sha256').update(token).digest('hex');
 
     this.resetPasswordTokenExpire = Date.now() + 10 * 60 * 10000;
