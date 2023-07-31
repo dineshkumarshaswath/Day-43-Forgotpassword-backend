@@ -105,18 +105,19 @@ router.post('/forgot/password', async (req, res) => {
 
       sendMail({  email: user.email, subject: "Reset the password",  message})
 
-      res.status(200).json({ success: true, message: `Email sent to ${user.email}`
+       return res.status(200).json({ message: `Email sent to ${user.email}`
     })
 
     //here is the catching the error field
     } catch (error) {
       console.error('server error', error);
-      res.status(500).json({ message: 'Internal server error' });
+       return res.status(500).json({ message: 'Internal server error' });
     }
   });
 
 
   router.post('/reset/password/:token', async (req, res) => {
+
     const resetPasswordToken =  crypto.createHash('sha256').update(req.params.token).digest('hex'); 
       try {
 
@@ -149,10 +150,10 @@ router.post('/forgot/password', async (req, res) => {
 // this is the send the token to the user
 
         const token = generatejwttoken(user._id)
-          res.status(200).json({  message:" successfully reset the password",token })
+           return res.status(200).json({  message:" successfully reset the password" })
       } catch (error) {
         console.error('server error', error);
-        res.status(500).json({ error: 'Internal server error' });
+         return res.status(500).json({ error: 'Internal server error' });
       }
     });
 
